@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/rharison/watcher-node/issues"
   },
-  "homepage": "https://github.com/rharison/watcher-node#readme"
+  "homepage": "https://github.com/rharison/watcher-node#readme",
+  "dependencies": {
+    "node-microphone": "^0.1.5"
+  }
 }
