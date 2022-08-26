@@ -20,6 +20,11 @@
   "homepage": "https://github.com/rharison/watcher-node#readme",
   "dependencies": {
     "naudiodon": "^2.3.6",
-    "node-microphone": "^0.1.5"
+    "node-microphone": "^0.1.5",
+    "node-wav": "^0.0.2",
+    "web-audio-api": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/node-wav": "^0.0.0"
   }
 }

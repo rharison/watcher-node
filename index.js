@@ -1,21 +1,20 @@
-import Mic from 'node-microphone';
-import WavFileWriter from 'wav';
+import fs from 'fs';
+import portAudio from 'naudiodon';
+import wav from 'node-wav'
 
-function main() {
-  const mic = new Mic()
-  const micStream = mic.startRecording()
-  // micStream.pipe( myWritableStream );
-  setTimeout(() => {
-    console.log('stopped recording')
-    mic.stopRecording();
-  }, 3000);
-  mic.on('info', (info) => {
-    new WavFileWriter.Writer(info)
-    console.log(info);
-  });
-  mic.on('error', (error) => {
-    console.log(error);
-  });
-}
+var ai = new portAudio.AudioIO({
+  inOptions: {
+    channelCount: 2,
+    sampleFormat: portAudio.SampleFormat16Bit,
+    sampleRate: 44100,
+    deviceId: -1,
+    closeOnError: true
+  }
+});
 
-main()
+var ws = fs.createWriteStream('rawAudio.raw');
+ai.pipe(ws);
+ai.on('data', buf => {
+  console.log(buf.toString('hex'))
+});
+ai.start();
